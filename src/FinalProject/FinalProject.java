@@ -1,10 +1,15 @@
 package FinalProject;
 
+// import javacard.framework.*;
+// import javacard.framework.APDU;
+// import javacard.security.KeyBuilder;
+// import javacard.security.*;
+// import javacardx.crypto.*;
 import javacard.framework.*;
-import javacard.security.KeyBuilder;
 import javacard.security.*;
 import javacardx.crypto.*;
-public class FinalProject extends Applet
+import javacardx.apdu.ExtendedLength;
+public class FinalProject extends Applet implements ExtendedLength
 {
 
     // codes of INS byte in the command APDU header
@@ -56,6 +61,8 @@ public class FinalProject extends Applet
      public final static  byte DATE = (byte)0x03;
 	public final static  byte ADDRESS = (byte)0x04;
 	public final static  byte AVATAR = (byte)0x05;
+	public final static  byte GENDER = (byte)0x06;
+	public final static  byte ID_DEPARTMENT = (byte)0x07;
 	
 //decode
     private static final short NIBBLE_SIZE = 4;
@@ -65,13 +72,50 @@ public class FinalProject extends Applet
     public static final short REASON_INVALID_ENCODING_CHARACTER = 0x0003;
     public static final short REASON_INVALID_DATA_SIZE = 0x0004;
     
+    //rsa
+	private static final byte EXPORT_PUBK_MODU =(byte) 0x10;
+	private static final byte EXPORT_PUBK_EXPO =(byte) 0x11;
+	private static final byte SIGN_DATA = (byte) 0x12;
+	private RSAPrivateKey rsaPrivKey;
+	private RSAPublicKey rsaPubKey;
+	private Signature rsaSig;
+	private short sigLen;
+	private byte[] sig_buffer;
+    
+    //ins_avatar
+    private static final byte INS_LOAD_IMAGE = 0x21;
+	private static final byte INS_SEND_IMAGE = 0x22;
+    
 	byte[] name;
 	byte[] id;
 	byte[] date;
 	byte[] address;
+	byte[] gender;
+	byte[] id_department;
+	
+	//avatar
+		private static byte [] avatar;
+	private static short avatarLength;
+	private static final short MAX_AVATAR_SIZE = 5120;
+	
 	
 	public   FinalProject(byte[] bArray, short bOffset, byte bLength) 
 	{
+		
+		
+		sigLen = (short)(KeyBuilder.LENGTH_RSA_1024/8);
+		sig_buffer = new byte[sigLen];
+		
+		rsaSig = Signature.getInstance(Signature.ALG_RSA_SHA_PKCS1,false);
+		
+		//Xay dung ban mau cho cac khoa
+		rsaPrivKey = (RSAPrivateKey)KeyBuilder.buildKey(KeyBuilder.TYPE_RSA_PRIVATE, (short)(8*sigLen),false); 
+		rsaPubKey = (RSAPublicKey)KeyBuilder.buildKey(KeyBuilder.TYPE_RSA_PUBLIC, (short)(8*sigLen), false);
+		//Tu ban mau o tren, tao ra bo doi khoa cong khai bi mat lien quan mat thiet den nhau
+		KeyPair keyPair = new KeyPair(KeyPair.ALG_RSA, (short)(8*sigLen));
+		keyPair.genKeyPair();
+		rsaPrivKey = (RSAPrivateKey)keyPair.getPrivate();
+		rsaPubKey = (RSAPublicKey)keyPair.getPublic();
 		
         // Util.arrayCopy(bArray, (short)(bOffset +1), pinTemp, (short)0, MAX_PIN_SIZE);
         //pinTemp = new byte[] {0x01,0x02,0x03,0x04,0x05};
@@ -82,7 +126,7 @@ public class FinalProject extends Applet
          //fromUppercaseHex(bArray, (short)0, (short)16, pinTemp,(short)0);
         // convertToDec(pinTemp, (short)16);
           pin.update(pinTemp,(short)( 0), (byte)ret);
-          volatileMem = JCSystem.makeTransientByteArray((short) 0x20, JCSystem.CLEAR_ON_DESELECT);
+          volatileMem = JCSystem.makeTransientByteArray((short) 0x10, JCSystem.CLEAR_ON_DESELECT);
          nonVolatileMem = new byte[(short) 0x10];
          aesCipher = Cipher.getInstance(Cipher.ALG_AES_BLOCK_128_ECB_NOPAD, false);
          aesKey = (AESKey) KeyBuilder.buildKey(KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128, false);
@@ -91,6 +135,11 @@ public class FinalProject extends Applet
         id = new byte[30];
         date = new byte[30];
         address = new byte[30];
+        gender = new byte[30];
+        id_department = new byte[30];
+        //avatar
+        avatar = new byte[MAX_AVATAR_SIZE];
+		Util.arrayFillNonAtomic(avatar,(short)0,MAX_AVATAR_SIZE,(byte)0x00);
         
         register();
 	}
@@ -121,75 +170,97 @@ public class FinalProject extends Applet
 		}
 
 		byte[] buffer = apdu.getBuffer();
-		 apdu.setIncomingAndReceive();
+	
+		short len = apdu.setIncomingAndReceive();
 		switch (buffer[ISO7816.OFFSET_INS])
 		{
 			
 		
 		 case (byte)0x09:
-			// // Util.arrayCopy(pinTemp, (short)0, buffer, (short)0, MAX_PIN_SIZE);
-			 // // pin.update(pinTemp,(short)0, MAX_PIN_SIZE);
-			// // apdu.setOutgoingAndSend((short) 0x00, MAX_PIN_SIZE);
 			mDig.reset();
 			short ret = mDig.doFinal(buffer, ISO7816.OFFSET_CDATA, (short)5, buffer, (short)0);
-			
 			 Util.arrayCopy(pinTemp, (short)0, buffer, (short)0, (short)16);
 			  apdu.setOutgoingAndSend((short)0, (short)16);
-			// break;
-         // case INS_SET_KEY:
-					// pinTemp = new byte[] {0x01,0x02,0x03,0x04,0x05};
-                 // aesKey.setKey(buffer, ISO7816.OFFSET_CDATA);
                   break;
          case INS_ENCRYPT:
                  aesCipher.init(aesKey, Cipher.MODE_ENCRYPT);
-                 aesCipher.doFinal(buffer, ISO7816.OFFSET_CDATA, (short) 0x20, volatileMem, (short) 0x00);
+                 aesCipher.doFinal(buffer, ISO7816.OFFSET_CDATA, (short) 0x10, volatileMem, (short) 0x00);
                  switch(buffer[ISO7816.OFFSET_P1]) {
 				 case ID:
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, id, (short) 0x00, (short) 0x20);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, id, (short) 0x00, (short) 0x10);
 				 	break;
 				case NAME:
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, name, (short) 0x00, (short) 0x20);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, name, (short) 0x00, (short) 0x10);
 				 	break;
 				 	case DATE:
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, date, (short) 0x00, (short) 0x20);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, date, (short) 0x00, (short) 0x10);
 				 	break;
 				 	case ADDRESS:
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, address, (short) 0x00, (short) 0x20);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, address, (short) 0x00, (short) 0x10);
+				 	break;
+				 	case GENDER:
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, gender, (short) 0x00, (short) 0x10);
+				 	break;
+				 	case ID_DEPARTMENT:
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, id_department, (short) 0x00, (short) 0x10);
 				 	break;
 				 case 0x11:
-				Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x20);
-
-				 apdu.setOutgoingAndSend((short) 0x00, (short) 0x20);
+				Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
+				 apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
 				 break;
                  }
-                
               break;
          case INS_DECRYPT:
                  aesCipher.init(aesKey, Cipher.MODE_DECRYPT);
                  switch(buffer[ISO7816.OFFSET_P1]) {
 				 case ID:
-				 aesCipher.doFinal(id, (short)0, (short) 0x20, volatileMem, (short) 0x00);
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x20);
-				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x20);
+				 aesCipher.doFinal(id, (short)0, (short) 0x10, volatileMem, (short) 0x00);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
+				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
 				 	break;
 				case NAME:
-				  aesCipher.doFinal(name, (short)0, (short) 0x20, volatileMem, (short) 0x00);
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x20);
-				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x20);
+				  aesCipher.doFinal(name, (short)0, (short) 0x10, volatileMem, (short) 0x00);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
+				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
 				 	break;
 				 	case DATE:
-				  aesCipher.doFinal(date, (short)0, (short) 0x20, volatileMem, (short) 0x00);
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x20);
-				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x20);
+				  aesCipher.doFinal(date, (short)0, (short) 0x10, volatileMem, (short) 0x00);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
+				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
 				 	break;
 				 	case ADDRESS:
-				  aesCipher.doFinal(address, (short)0, (short) 0x20, volatileMem, (short) 0x00);
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x20);
-				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x20);
+				  aesCipher.doFinal(address, (short)0, (short) 0x10, volatileMem, (short) 0x00);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
+				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
+				 	break;
+				 	case GENDER:
+				  aesCipher.doFinal(gender, (short)0, (short) 0x10, volatileMem, (short) 0x00);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
+				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
+				 	break;
+				 	case ID_DEPARTMENT:
+				  aesCipher.doFinal(id_department, (short)0, (short) 0x10, volatileMem, (short) 0x00);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
+				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
 				 	break;
                  }
                  break;
         
+        case EXPORT_PUBK_MODU:
+				exportPublicModulus(apdu);
+			break;
+		case EXPORT_PUBK_EXPO:
+				exportPublicExponent(apdu);
+			break;
+		case SIGN_DATA:
+				signData(apdu);
+			break;
+        case INS_LOAD_IMAGE: //0x0C
+				loadImage(apdu, len); 
+				break;
+			case INS_SEND_IMAGE: //0x0D
+				sendImage(apdu, len);
+				break;
         case VERIFY: verify(apdu);
               break;
         case CHANGE_PIN:
@@ -204,30 +275,7 @@ public class FinalProject extends Applet
 		}
 	}
 
-	
-	private void encriptProcess(APDU apdu) {
-		
-      Cipher aesCipher;
-  AESKey aesKeyTrial;
-  aesKeyTrial= (AESKey) KeyBuilder.buildKey(KeyBuilder.TYPE_AES_TRANSIENT_DESELECT, KeyBuilder.LENGTH_AES_128, false);
-  byte[] buffer = apdu.getBuffer();
-  byte[] aesKey;
-  aesKey = new byte[16];
-  byte[] input = {(byte)0x11,(byte)0x22,(byte)0x33,(byte)0x44,(byte)0x55,(byte)0x66,(byte)0x77,(byte)0x88,(byte)0x99,0x10,(byte)0xA2, 0x35, (byte)0x5E,0x15,0x16,0x14};
-  byte[] key = {0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26};
 
-  short len = (short) input.length;
-  if (len <= 0 || len % 16 != 0)
-    {
-        ISOException.throwIt(ISO7816.SW_WRONG_LENGTH);
-    }
-
-  aesKeyTrial.setKey(key,(short)0);
-  aesCipher = Cipher.getInstance(Cipher.ALG_AES_BLOCK_128_ECB_NOPAD, false);
-  aesCipher.init(aesKeyTrial, Cipher.MODE_ENCRYPT); 
-  aesCipher.doFinal(input, (short)0, len, buffer, (short)0);
-  apdu.setOutgoingAndSend((short)0, len);	
-	}
 	
 	private void verify(APDU apdu) {
 		if( pin.getTriesRemaining() != 0 )	{
@@ -237,5 +285,101 @@ public class FinalProject extends Applet
                ISOException.throwIt(SW_VERIFICATION_FAILED);
 		  }	else  ISOException.throwIt(SW_OVER_ATTEMP);
     }
+    
+    private void exportPublicModulus(APDU apdu) {
+		byte buffer[] = apdu.getBuffer();
+		short expLenmo = rsaPubKey.getModulus(buffer, (short) 0);
+		apdu.setOutgoingAndSend((short) 0, (short) (expLenmo));
+	}
+	
+	private void exportPublicExponent(APDU apdu) {
+		byte buffer[] = apdu.getBuffer();
+		short expLenex = rsaPubKey.getExponent(buffer, (short) 0);
+		apdu.setOutgoingAndSend((short) 0, (short) expLenex);
+	}
+	
+	private void signData(APDU apdu){
+		byte buffer[] = apdu.getBuffer();
+		
+		rsaSig.init(rsaPrivKey, Signature.MODE_SIGN);
+		rsaSig.sign(buffer, (short)5, (short)20, sig_buffer, (short)0);
+		apdu.setOutgoing();
+		apdu.setOutgoingLength((short)(sigLen));
+		apdu.sendBytesLong(sig_buffer, (short)0, sigLen);
+	}
+	
+	//Doc key object va luu no vao trong bo dem tuong ung
+	private final short serializeKey(RSAPublicKey key, byte[] buffer, short offset) {
+		short expLen = key.getExponent(buffer, (short) (offset + 2));
+		Util.setShort(buffer, offset, expLen);
+		short modLen = key.getModulus(buffer, (short) (offset + 4 + expLen));
+		Util.setShort(buffer, (short)(offset + 2 + expLen), modLen);
+		return (short) (4 + expLen + modLen);
+	}
+
+	//Doc key tu bo dem va luu no vao trong key object
+	private final short deserializeKey(RSAPublicKey key, byte[] buffer, short offset) {
+		short expLen = Util.getShort(buffer, offset);
+		key.setExponent(buffer, (short) (offset + 2), expLen);
+		short modLen = Util.getShort(buffer, (short) (offset + 2 + expLen));
+		key.setModulus(buffer, (short) (offset + 4 + expLen), modLen);
+		return (short) (4 + expLen + modLen);
+	}
+    
+     private void loadImage(APDU apdu, short len){
+		 byte[] buffer = apdu.getBuffer();
+		 //lay do dai du lieu gui xuong
+		 short dataLength = apdu.getIncomingLength();
+		 Util.arrayFillNonAtomic(avatar,(short)0,MAX_AVATAR_SIZE,(byte)0x00);
+		 // apdu.setOutgoing();
+		 // Util.arrayFillNonAtomic(buffer,(short)0,(short)10,(byte)0x00);
+		 // Util.setShort(buffer,(short) 0, dataLength);
+		 // apdu.setOutgoingLength((short)5);
+		 // apdu.sendBytes((short)0,(short)5);
+		 
+		 if(dataLength > MAX_AVATAR_SIZE){
+			 ISOException.throwIt(ISO7816.SW_WRONG_LENGTH);
+		 }
+		 short dataOffset = apdu.getOffsetCdata();
+		 short pointer = 0;
+		 while (len > 0){
+			 Util.arrayCopy(buffer,dataOffset,avatar,pointer,len);
+			 pointer += len;
+			 len = apdu.receiveBytes(dataOffset);
+		 }
+		avatarLength = (short)pointer;
+
+		apdu.setOutgoing();
+
+
+		// Util.setShort(buffer,(short) 0, avatarBlock);
+		// apdu.setOutgoingLength((short)5);
+		// apdu.sendBytes((short)0,(short)5);
+			//Cai dat che do ma hoa cho du lieu moi
+		aesCipher.init(aesKey, Cipher.MODE_ENCRYPT);
+		aesCipher.doFinal(avatar,(short)0,MAX_AVATAR_SIZE,avatar,(short)0);	 
+	 }
+	 
+	 private void sendImage(APDU apdu, short len){
+		 if(avatarLength == (short) 0){
+			 ISOException.throwIt(ISO7816.SW_RECORD_NOT_FOUND);
+		 }
+		 aesCipher.init(aesKey, Cipher.MODE_DECRYPT);
+		 aesCipher.doFinal(avatar,(short) 0, MAX_AVATAR_SIZE, avatar,(short) 0);
+		 short toSend = avatarLength;
+		 short le = apdu.setOutgoing();
+		 apdu.setOutgoingLength(MAX_AVATAR_SIZE);
+		 short sendLen = 0;
+		 short pointer = 0;
+		 while(toSend > 0){
+			 sendLen = (toSend > 0) ? le : toSend;
+			 apdu.sendBytesLong(avatar,pointer,sendLen);
+			 toSend -= sendLen;
+			 pointer += sendLen;
+		 }
+		//Anh gui ra sau do se duoc ma hoa va luu lai vao bien
+		aesCipher.init(aesKey, Cipher.MODE_ENCRYPT);
+		aesCipher.doFinal(avatar,(short)0,MAX_AVATAR_SIZE,avatar,(short)0);	
+	 }
     
 }

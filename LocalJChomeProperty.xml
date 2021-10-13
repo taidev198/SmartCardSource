@@ -1,10 +1,13 @@
 <Local_Env_Config>
 <JCKit_Option>
-<ClassPaths/>
+<ClassPaths>
+<path>C:\JavaCardKit\SDK\Tools\JCIDE\lib\java_card_kit\2_2_2\lib\api.jar</path>
+<path>C:\JavaCardKit\SDK\Tools\JCIDE\lib\java_card_kit\2_2_2\lib\converter.jar</path>
+</ClassPaths>
 <localJcHomePath/>
-<_OutPutRootDir>D:\workspace\Student\bin</_OutPutRootDir>
+<_OutPutRootDir>D:\FinalProject\bin</_OutPutRootDir>
 <OutType>EXP JCA CAP</OutType>
-<JavaCardVersion>java_card_kit-2_2_1</JavaCardVersion>
+<JavaCardVersion>java_card_kit-2_2_2</JavaCardVersion>
 <_InheritClassPath>1</_InheritClassPath>
 <_verbos>0</_verbos>
 <_nowarn>0</_nowarn>

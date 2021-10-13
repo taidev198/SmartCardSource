@@ -1,7 +1,10 @@
 <Local_Env_Config>
 <Javac_Option>
-<ClassPaths/>
-<localJavaHomePath>C:\JavaCardKit\JDK</localJavaHomePath>
+<ClassPaths>
+<path>C:\JavaCardKit\SDK\Tools\JCIDE\lib\java_card_kit\2_2_2\lib\api.jar</path>
+<path>C:\JavaCardKit\SDK\Tools\JCIDE\lib\java_card_kit\2_2_2\lib\converter.jar</path>
+</ClassPaths>
+<localJavaHomePath>D:\JavaCardKit\JDK</localJavaHomePath>
 <_Source>1.5</_Source>
 <_Target>1.5</_Target>
 <_Encoding>windows-1252</_Encoding>
