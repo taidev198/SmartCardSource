@@ -1,5 +1,5 @@
 // converted by version 1.3
-// on Wed Oct 13 20:16:12 ICT 2021
+// on Tue Oct 19 18:27:15 ICT 2021
 
 .package FinalProject {
 	.aid 0x1:0x2:0x3:0x4:0x5;
@@ -49,123 +49,123 @@
 		// 14
 		instanceFieldRef byte[] FinalProject/id_department;
 		// 15
-		virtualMethodRef 2.16.1()V;		// genKeyPair()V
-		// 16
-		virtualMethodRef 2.16.2()Ljavacard/security/PrivateKey;;		// getPrivate()Ljavacard/security/PrivateKey;
-			.descriptor	Ljavacard/security/PrivateKey;	2.2;
-
-		// 17
 		virtualMethodRef 2.16.3()Ljavacard/security/PublicKey;;		// getPublic()Ljavacard/security/PublicKey;
 			.descriptor	Ljavacard/security/PublicKey;	2.3;
 
-		// 18
+		// 16
 		staticMethodRef 2.11.0(BZ)Ljavacard/security/MessageDigest;;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
 			.descriptor	Ljavacard/security/MessageDigest;	2.11;
 
-		// 19
-		staticMethodRef 0.16.4([BS)S;		// javacard/framework/Util.getShort([BS)S
-		// 20
-		virtualMethodRef 2.11.1([BSS[BS)S;		// doFinal([BSS[BS)S
-		// 21
-		classRef 0.9;		// javacard/framework/OwnerPIN
-		// 22
-		staticMethodRef 0.9.0(BB)V;		// javacard/framework/OwnerPIN.<init>(BB)V
-		// 23
-		staticFieldRef 0.9 FinalProject/pin;
-		// 24
-		virtualMethodRef 0.9.8([BSB)V;		// update([BSB)V
-		// 25
-		staticMethodRef 0.8.13(SB)[B;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
-		// 26
-		staticMethodRef 2.15.0(BZ)Ljavacard/security/Signature;;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
-			.descriptor	Ljavacard/security/Signature;	2.15;
-
-		// 27
-		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
-		// 28
-		staticMethodRef 3.1.0(BZ)Ljavacardx/crypto/Cipher;;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
-			.descriptor	Ljavacardx/crypto/Cipher;	3.1;
-
-		// 29
-		staticFieldRef 3.1 FinalProject/aesCipher;
-		// 30
-		classRef 2.20;		// javacard/security/AESKey
-		// 31
-		staticFieldRef 2.20 FinalProject/aesKey;
-		// 32
+		// 17
 		staticMethodRef 2.13.0(BSZ)Ljavacard/security/Key;;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
 			.descriptor	Ljavacard/security/Key;	2.0;
 
-		// 33
+		// 18
+		virtualMethodRef 2.11.1([BSS[BS)S;		// doFinal([BSS[BS)S
+		// 19
+		classRef 0.9;		// javacard/framework/OwnerPIN
+		// 20
+		staticMethodRef 0.9.0(BB)V;		// javacard/framework/OwnerPIN.<init>(BB)V
+		// 21
+		staticFieldRef 0.9 FinalProject/pin;
+		// 22
+		virtualMethodRef 0.9.8([BSB)V;		// update([BSB)V
+		// 23
+		staticMethodRef 0.8.13(SB)[B;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+		// 24
 		classRef 2.8;		// javacard/security/RSAPrivateKey
-		// 34
-		staticMethodRef 0.16.6([BSS)S;		// javacard/framework/Util.setShort([BSS)S
-		// 35
+		// 25
+		staticMethodRef 2.15.0(BZ)Ljavacard/security/Signature;;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+			.descriptor	Ljavacard/security/Signature;	2.15;
+
+		// 26
+		staticMethodRef 3.1.0(BZ)Ljavacardx/crypto/Cipher;;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+			.descriptor	Ljavacardx/crypto/Cipher;	3.1;
+
+		// 27
+		staticFieldRef 3.1 FinalProject/aesCipher;
+		// 28
+		classRef 2.20;		// javacard/security/AESKey
+		// 29
+		staticFieldRef 2.20 FinalProject/aesKey;
+		// 30
 		classRef 2.9;		// javacard/security/RSAPublicKey
-		// 36
+		// 31
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 32
 		classRef 2.16;		// javacard/security/KeyPair
-		// 37
+		// 33
 		staticMethodRef 2.16.0(BS)V;		// javacard/security/KeyPair.<init>(BS)V
-		// 38
+		// 34
+		virtualMethodRef 2.16.1()V;		// genKeyPair()V
+		// 35
+		virtualMethodRef 2.16.2()Ljavacard/security/PrivateKey;;		// getPrivate()Ljavacard/security/PrivateKey;
+			.descriptor	Ljavacard/security/PrivateKey;	2.2;
+
+		// 36
 		staticFieldRef byte[] FinalProject/avatar;
-		// 39
+		// 37
 		staticMethodRef 0.16.3([BSSB)S;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
-		// 40
+		// 38
 		virtualMethodRef 0.3.1()V;		// register()V
-		// 41
+		// 39
 		classRef FinalProject;
-		// 42
+		// 40
 		staticMethodRef FinalProject/<init>([BSB)V;
-		// 43
+		// 41
 		virtualMethodRef 0.9.2()B;		// getTriesRemaining()B
-		// 44
+		// 42
 		virtualMethodRef 0.9.5()V;		// reset()V
-		// 45
+		// 43
 		virtualMethodRef 0.3.3()Z;		// selectingApplet()Z
-		// 46
+		// 44
 		virtualMethodRef 0.10.1()[B;		// getBuffer()[B
-		// 47
+		// 45
 		virtualMethodRef 0.10.6()S;		// setIncomingAndReceive()S
-		// 48
+		// 46
 		virtualMethodRef 2.11.4()V;		// reset()V
-		// 49
+		// 47
 		staticMethodRef 0.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
-		// 50
+		// 48
 		virtualMethodRef 0.10.8(SS)V;		// setOutgoingAndSend(SS)V
-		// 51
+		// 49
 		virtualMethodRef 3.1.3(Ljavacard/security/Key;B)V;		// init(Ljavacard/security/Key;B)V
 			.descriptor	Ljavacard/security/Key;	2.0;
 
-		// 52
+		// 50
 		virtualMethodRef 3.1.1([BSS[BS)S;		// doFinal([BSS[BS)S
-		// 53
+		// 51
 		staticMethodRef 0.16.2([BS[BSS)S;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
-		// 54
+		// 52
 		staticMethodRef FinalProject/exportPublicModulus(Ljavacard/framework/APDU;)V;
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
-		// 55
+		// 53
 		staticMethodRef FinalProject/exportPublicExponent(Ljavacard/framework/APDU;)V;
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
-		// 56
+		// 54
 		staticMethodRef FinalProject/signData(Ljavacard/framework/APDU;)V;
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
-		// 57
+		// 55
 		staticMethodRef FinalProject/loadImage(Ljavacard/framework/APDU;S)V;
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
-		// 58
+		// 56
 		staticMethodRef FinalProject/sendImage(Ljavacard/framework/APDU;S)V;
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
-		// 59
+		// 57
 		staticMethodRef FinalProject/verify(Ljavacard/framework/APDU;)V;
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
-		// 60
+		// 58
+		staticMethodRef FinalProject/resetPin()V;
+		// 59
 		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 60
+		virtualMethodRef 0.9.6()V;		// resetAndUnblock()V
 		// 61
 		virtualMethodRef 0.9.1([BSB)Z;		// check([BSB)Z
 		// 62
@@ -242,7 +242,7 @@
 			private static final byte INS_SEND_IMAGE = 34;		// B
 			private static byte[] avatar;		// [B
 			private static short avatarLength;		// S
-			private static final short MAX_AVATAR_SIZE = 5120;		// S
+			private static final short MAX_AVATAR_SIZE = 25120;		// S
 		}
 
 		.publicMethodTable 4 {
@@ -265,98 +265,12 @@
 
 		}
 
-		.method private final serializeKey(Ljavacard/security/RSAPublicKey;[BS)S {
-			.stack 4;
-			.locals 2;
-
-			.descriptor	Ljavacard/security/RSAPublicKey;	2.9;
-
-				L0:	aload_1;
-					aload_2;
-					sload_3;
-					sconst_2;
-					sadd;
-					invokeinterface 3 35 4;		// javacard/security/RSAPublicKey
-					sstore 4;
-				L1:	aload_2;
-					sload_3;
-					sload 4;
-					invokestatic 34;		// javacard/framework/Util.setShort([BSS)S
-					pop;
-					aload_1;
-					aload_2;
-					sload_3;
-					sconst_4;
-					sadd;
-					sload 4;
-					sadd;
-					invokeinterface 3 35 5;		// javacard/security/RSAPublicKey
-					sstore 5;
-				L2:	aload_2;
-					sload_3;
-					sconst_2;
-					sadd;
-					sload 4;
-					sadd;
-					sload 5;
-					invokestatic 34;		// javacard/framework/Util.setShort([BSS)S
-					pop;
-					sconst_4;
-					sload 4;
-					sadd;
-					sload 5;
-					sadd;
-					sreturn;
-		}
-
-		.method private final deserializeKey(Ljavacard/security/RSAPublicKey;[BS)S {
-			.stack 4;
-			.locals 2;
-
-			.descriptor	Ljavacard/security/RSAPublicKey;	2.9;
-
-				L0:	aload_2;
-					sload_3;
-					invokestatic 19;		// javacard/framework/Util.getShort([BS)S
-					sstore 4;
-				L1:	aload_1;
-					aload_2;
-					sload_3;
-					sconst_2;
-					sadd;
-					sload 4;
-					invokeinterface 4 35 6;		// javacard/security/RSAPublicKey
-					aload_2;
-					sload_3;
-					sconst_2;
-					sadd;
-					sload 4;
-					sadd;
-					invokestatic 19;		// javacard/framework/Util.getShort([BS)S
-					sstore 5;
-				L2:	aload_1;
-					aload_2;
-					sload_3;
-					sconst_4;
-					sadd;
-					sload 4;
-					sadd;
-					sload 5;
-					invokeinterface 4 35 7;		// javacard/security/RSAPublicKey
-					sconst_4;
-					sload 4;
-					sadd;
-					sload 5;
-					sadd;
-					sreturn;
-		}
-
 		.method public <init>([BSB)V 0 {
 			.stack 6;
 			.locals 2;
 
 				L0:	aload_0;
-					invokespecial 27;		// javacard/framework/Applet.<init>()V
+					invokespecial 31;		// javacard/framework/Applet.<init>()V
 					aload_0;
 					bspush 16;
 					newarray 11;
@@ -371,7 +285,7 @@
 					aload_0;
 					bspush 10;
 					sconst_0;
-					invokestatic 26;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+					invokestatic 25;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
 					putfield_a 3;		// reference FinalProject/FinalProject.rsaSig
 					aload_0;
 					sconst_5;
@@ -379,8 +293,8 @@
 					getfield_s_this 1;		// short FinalProject/FinalProject.sigLen
 					smul;
 					sconst_0;
-					invokestatic 32;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
-					checkcast 0 33;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
+					invokestatic 17;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 24;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
 					putfield_a 4;		// reference FinalProject/FinalProject.rsaPrivKey
 					aload_0;
 					sconst_4;
@@ -388,33 +302,33 @@
 					getfield_s_this 1;		// short FinalProject/FinalProject.sigLen
 					smul;
 					sconst_0;
-					invokestatic 32;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
-					checkcast 0 35;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
+					invokestatic 17;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 30;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
 					putfield_a 5;		// reference FinalProject/FinalProject.rsaPubKey
-					new 36;		// javacard/security/KeyPair
+					new 32;		// javacard/security/KeyPair
 					dup;
 					sconst_1;
 					bspush 8;
 					getfield_s_this 1;		// short FinalProject/FinalProject.sigLen
 					smul;
-					invokespecial 37;		// javacard/security/KeyPair.<init>(BS)V
+					invokespecial 33;		// javacard/security/KeyPair.<init>(BS)V
 					astore 4;
 				L1:	aload 4;
-					invokevirtual 15;		// genKeyPair()V
+					invokevirtual 34;		// genKeyPair()V
 					aload_0;
 					aload 4;
-					invokevirtual 16;		// getPrivate()Ljavacard/security/PrivateKey;
-					checkcast 0 33;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
+					invokevirtual 35;		// getPrivate()Ljavacard/security/PrivateKey;
+					checkcast 0 24;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
 					putfield_a 4;		// reference FinalProject/FinalProject.rsaPrivKey
 					aload_0;
 					aload 4;
-					invokevirtual 17;		// getPublic()Ljavacard/security/PublicKey;
-					checkcast 0 35;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
+					invokevirtual 15;		// getPublic()Ljavacard/security/PublicKey;
+					checkcast 0 30;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
 					putfield_a 5;		// reference FinalProject/FinalProject.rsaPubKey
 					aload_0;
 					sconst_2;
 					sconst_1;
-					invokestatic 18;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+					invokestatic 16;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
 					putfield_a 6;		// reference FinalProject/FinalProject.mDig
 					getfield_a_this 6;		// reference FinalProject/FinalProject.mDig
 					aload_1;
@@ -424,25 +338,25 @@
 					sconst_5;
 					getfield_a_this 0;		// reference FinalProject/FinalProject.pinTemp
 					sconst_0;
-					invokevirtual 20;		// doFinal([BSS[BS)S
+					invokevirtual 18;		// doFinal([BSS[BS)S
 					sstore 5;
-				L2:	new 21;		// javacard/framework/OwnerPIN
+				L2:	new 19;		// javacard/framework/OwnerPIN
 					dup;
 					sconst_3;
 					sload 5;
 					s2b;
-					invokespecial 22;		// javacard/framework/OwnerPIN.<init>(BB)V
-					putstatic_a 23;		// reference FinalProject/FinalProject.pin
-					getstatic_a 23;		// reference FinalProject/FinalProject.pin
+					invokespecial 20;		// javacard/framework/OwnerPIN.<init>(BB)V
+					putstatic_a 21;		// reference FinalProject/FinalProject.pin
+					getstatic_a 21;		// reference FinalProject/FinalProject.pin
 					getfield_a_this 0;		// reference FinalProject/FinalProject.pinTemp
 					sconst_0;
 					sload 5;
 					s2b;
-					invokevirtual 24;		// update([BSB)V
+					invokevirtual 22;		// update([BSB)V
 					aload_0;
 					bspush 16;
 					sconst_2;
-					invokestatic 25;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					invokestatic 23;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
 					putfield_a 7;		// reference FinalProject/FinalProject.volatileMem
 					aload_0;
 					bspush 16;
@@ -450,18 +364,18 @@
 					putfield_a 8;		// reference FinalProject/FinalProject.nonVolatileMem
 					bspush 14;
 					sconst_0;
-					invokestatic 28;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
-					putstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
+					invokestatic 26;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+					putstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
 					bspush 15;
 					sspush 128;
 					sconst_0;
-					invokestatic 32;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
-					checkcast 0 30;		// T_CLASSORINTERFACE javacard/security/AESKey
-					putstatic_a 31;		// reference FinalProject/FinalProject.aesKey
-					getstatic_a 31;		// reference FinalProject/FinalProject.aesKey
+					invokestatic 17;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 28;		// T_CLASSORINTERFACE javacard/security/AESKey
+					putstatic_a 29;		// reference FinalProject/FinalProject.aesKey
+					getstatic_a 29;		// reference FinalProject/FinalProject.aesKey
 					getfield_a_this 0;		// reference FinalProject/FinalProject.pinTemp
 					sconst_0;
-					invokeinterface 3 30 4;		// javacard/security/AESKey
+					invokeinterface 3 28 4;		// javacard/security/AESKey
 					aload_0;
 					bspush 30;
 					newarray 11;
@@ -486,17 +400,17 @@
 					bspush 30;
 					newarray 11;
 					putfield_a 14;		// reference FinalProject/FinalProject.id_department
-					sspush 5120;
+					sspush 25120;
 					newarray 11;
-					putstatic_a 38;		// reference FinalProject/FinalProject.avatar
-					getstatic_a 38;		// reference FinalProject/FinalProject.avatar
+					putstatic_a 36;		// reference FinalProject/FinalProject.avatar
+					getstatic_a 36;		// reference FinalProject/FinalProject.avatar
 					sconst_0;
-					sspush 5120;
+					sspush 25120;
 					sconst_0;
-					invokestatic 39;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					invokestatic 37;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
 					pop;
 					aload_0;
-					invokevirtual 40;		// register()V
+					invokevirtual 38;		// register()V
 					return;
 		}
 
@@ -504,12 +418,12 @@
 			.stack 5;
 			.locals 0;
 
-				L0:	new 41;		// FinalProject/FinalProject
+				L0:	new 39;		// FinalProject/FinalProject
 					dup;
 					aload_0;
 					sload_1;
 					sload_2;
-					invokespecial 42;		// FinalProject/FinalProject.<init>([BSB)V
+					invokespecial 40;		// FinalProject/FinalProject.<init>([BSB)V
 					pop;
 					return;
 		}
@@ -518,8 +432,8 @@
 			.stack 1;
 			.locals 0;
 
-				L0:	getstatic_a 23;		// reference FinalProject/FinalProject.pin
-					invokevirtual 43;		// getTriesRemaining()B
+				L0:	getstatic_a 21;		// reference FinalProject/FinalProject.pin
+					invokevirtual 41;		// getTriesRemaining()B
 					ifne L2;
 				L1:	sconst_0;
 					sreturn;
@@ -531,8 +445,8 @@
 			.stack 1;
 			.locals 0;
 
-				L0:	getstatic_a 23;		// reference FinalProject/FinalProject.pin
-					invokevirtual 44;		// reset()V
+				L0:	getstatic_a 21;		// reference FinalProject/FinalProject.pin
+					invokevirtual 42;		// reset()V
 					return;
 		}
 
@@ -543,52 +457,52 @@
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
 				L0:	aload_0;
-					invokevirtual 45;		// selectingApplet()Z
+					invokevirtual 43;		// selectingApplet()Z
 					ifeq L2;
 				L1:	return;
 				L2:	aload_1;
-					invokevirtual 46;		// getBuffer()[B
+					invokevirtual 44;		// getBuffer()[B
 					astore_2;
 				L3:	aload_1;
-					invokevirtual 47;		// setIncomingAndReceive()S
+					invokevirtual 45;		// setIncomingAndReceive()S
 					sstore_3;
 				L4:	aload_2;
 					sconst_1;
 					baload;
-					stableswitch L31 2 34 L7 L16 L31 L30 L31 L31 L31 L5 L31 L31 L31 L31 L31 L31 L24 L25 L26 L31 L31 L31 L31 L31 L31 L31 L31 L31 L31 L31 L31 L31 L29 L27 L28;
+					stableswitch L32 2 34 L7 L16 L31 L30 L32 L32 L32 L5 L32 L32 L32 L32 L32 L32 L24 L25 L26 L32 L32 L32 L32 L32 L32 L32 L32 L32 L32 L32 L32 L32 L29 L27 L28;
 				L5:	getfield_a_this 6;		// reference FinalProject/FinalProject.mDig
-					invokevirtual 48;		// reset()V
+					invokevirtual 46;		// reset()V
 					getfield_a_this 6;		// reference FinalProject/FinalProject.mDig
 					aload_2;
 					sconst_5;
 					sconst_5;
 					aload_2;
 					sconst_0;
-					invokevirtual 20;		// doFinal([BSS[BS)S
+					invokevirtual 18;		// doFinal([BSS[BS)S
 					sstore 4;
 				L6:	getfield_a_this 0;		// reference FinalProject/FinalProject.pinTemp
 					sconst_0;
 					aload_2;
 					sconst_0;
 					bspush 16;
-					invokestatic 49;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 47;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					aload_1;
 					sconst_0;
 					bspush 16;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
-					goto_w L32;
-				L7:	getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
-					getstatic_a 31;		// reference FinalProject/FinalProject.aesKey
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
+					goto_w L33;
+				L7:	getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
+					getstatic_a 29;		// reference FinalProject/FinalProject.aesKey
 					sconst_2;
-					invokevirtual 51;		// init(Ljavacard/security/Key;B)V
-					getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
+					invokevirtual 49;		// init(Ljavacard/security/Key;B)V
+					getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
 					aload_2;
 					sconst_5;
 					bspush 16;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
-					invokevirtual 52;		// doFinal([BSS[BS)S
+					invokevirtual 50;		// doFinal([BSS[BS)S
 					pop;
 					aload_2;
 					sconst_2;
@@ -599,7 +513,7 @@
 					getfield_a_this 10;		// reference FinalProject/FinalProject.id
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					goto L15;
 				L9:	getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
@@ -607,7 +521,7 @@
 					getfield_a_this 9;		// reference FinalProject/FinalProject.name
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					goto L15;
 				L10:	getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
@@ -615,7 +529,7 @@
 					getfield_a_this 11;		// reference FinalProject/FinalProject.date
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					goto L15;
 				L11:	getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
@@ -623,7 +537,7 @@
 					getfield_a_this 12;		// reference FinalProject/FinalProject.address
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					goto L15;
 				L12:	getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
@@ -631,7 +545,7 @@
 					getfield_a_this 13;		// reference FinalProject/FinalProject.gender
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					goto L15;
 				L13:	getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
@@ -639,7 +553,7 @@
 					getfield_a_this 14;		// reference FinalProject/FinalProject.id_department
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					goto L15;
 				L14:	getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
@@ -647,180 +561,192 @@
 					aload_2;
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					aload_1;
 					sconst_0;
 					bspush 16;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
-				L15:	goto_w L32;
-				L16:	getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
-					getstatic_a 31;		// reference FinalProject/FinalProject.aesKey
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
+				L15:	goto_w L33;
+				L16:	getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
+					getstatic_a 29;		// reference FinalProject/FinalProject.aesKey
 					sconst_1;
-					invokevirtual 51;		// init(Ljavacard/security/Key;B)V
+					invokevirtual 49;		// init(Ljavacard/security/Key;B)V
 					aload_2;
 					sconst_2;
 					baload;
 					stableswitch L23 1 7 L17 L18 L19 L20 L23 L21 L22;
-				L17:	getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
+				L17:	getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
 					getfield_a_this 10;		// reference FinalProject/FinalProject.id
 					sconst_0;
 					bspush 16;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
-					invokevirtual 52;		// doFinal([BSS[BS)S
+					invokevirtual 50;		// doFinal([BSS[BS)S
 					pop;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
 					aload_2;
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					aload_1;
 					sconst_0;
 					bspush 16;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
 					goto_w L23;
-				L18:	getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
+				L18:	getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
 					getfield_a_this 9;		// reference FinalProject/FinalProject.name
 					sconst_0;
 					bspush 16;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
-					invokevirtual 52;		// doFinal([BSS[BS)S
+					invokevirtual 50;		// doFinal([BSS[BS)S
 					pop;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
 					aload_2;
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					aload_1;
 					sconst_0;
 					bspush 16;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
 					goto_w L23;
-				L19:	getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
+				L19:	getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
 					getfield_a_this 11;		// reference FinalProject/FinalProject.date
 					sconst_0;
 					bspush 16;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
-					invokevirtual 52;		// doFinal([BSS[BS)S
+					invokevirtual 50;		// doFinal([BSS[BS)S
 					pop;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
 					aload_2;
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					aload_1;
 					sconst_0;
 					bspush 16;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
 					goto L23;
-				L20:	getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
+				L20:	getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
 					getfield_a_this 12;		// reference FinalProject/FinalProject.address
 					sconst_0;
 					bspush 16;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
-					invokevirtual 52;		// doFinal([BSS[BS)S
+					invokevirtual 50;		// doFinal([BSS[BS)S
 					pop;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
 					aload_2;
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					aload_1;
 					sconst_0;
 					bspush 16;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
 					goto L23;
-				L21:	getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
+				L21:	getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
 					getfield_a_this 13;		// reference FinalProject/FinalProject.gender
 					sconst_0;
 					bspush 16;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
-					invokevirtual 52;		// doFinal([BSS[BS)S
+					invokevirtual 50;		// doFinal([BSS[BS)S
 					pop;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
 					aload_2;
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					aload_1;
 					sconst_0;
 					bspush 16;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
 					goto L23;
-				L22:	getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
+				L22:	getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
 					getfield_a_this 14;		// reference FinalProject/FinalProject.id_department
 					sconst_0;
 					bspush 16;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
-					invokevirtual 52;		// doFinal([BSS[BS)S
+					invokevirtual 50;		// doFinal([BSS[BS)S
 					pop;
 					getfield_a_this 7;		// reference FinalProject/FinalProject.volatileMem
 					sconst_0;
 					aload_2;
 					sconst_0;
 					bspush 16;
-					invokestatic 53;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					invokestatic 51;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
 					pop;
 					aload_1;
 					sconst_0;
 					bspush 16;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
-				L23:	goto L32;
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
+				L23:	goto L33;
 				L24:	aload_0;
 					aload_1;
-					invokespecial 54;		// FinalProject/FinalProject.exportPublicModulus(Ljavacard/framework/APDU;)V
-					goto L32;
+					invokespecial 52;		// FinalProject/FinalProject.exportPublicModulus(Ljavacard/framework/APDU;)V
+					goto L33;
 				L25:	aload_0;
 					aload_1;
-					invokespecial 55;		// FinalProject/FinalProject.exportPublicExponent(Ljavacard/framework/APDU;)V
-					goto L32;
+					invokespecial 53;		// FinalProject/FinalProject.exportPublicExponent(Ljavacard/framework/APDU;)V
+					goto L33;
 				L26:	aload_0;
 					aload_1;
-					invokespecial 56;		// FinalProject/FinalProject.signData(Ljavacard/framework/APDU;)V
-					goto L32;
+					invokespecial 54;		// FinalProject/FinalProject.signData(Ljavacard/framework/APDU;)V
+					goto L33;
 				L27:	aload_0;
 					aload_1;
 					sload_3;
-					invokespecial 57;		// FinalProject/FinalProject.loadImage(Ljavacard/framework/APDU;S)V
-					goto L32;
+					invokespecial 55;		// FinalProject/FinalProject.loadImage(Ljavacard/framework/APDU;S)V
+					goto L33;
 				L28:	aload_0;
 					aload_1;
 					sload_3;
-					invokespecial 58;		// FinalProject/FinalProject.sendImage(Ljavacard/framework/APDU;S)V
-					goto L32;
+					invokespecial 56;		// FinalProject/FinalProject.sendImage(Ljavacard/framework/APDU;S)V
+					goto L33;
 				L29:	aload_0;
 					aload_1;
-					invokespecial 59;		// FinalProject/FinalProject.verify(Ljavacard/framework/APDU;)V
-					goto L32;
-				L30:	getstatic_a 23;		// reference FinalProject/FinalProject.pin
+					invokespecial 57;		// FinalProject/FinalProject.verify(Ljavacard/framework/APDU;)V
+					goto L33;
+				L30:	getstatic_a 21;		// reference FinalProject/FinalProject.pin
 					aload_2;
 					sconst_5;
 					bspush 16;
-					invokevirtual 24;		// update([BSB)V
+					invokevirtual 22;		// update([BSB)V
 					aload_1;
 					sconst_0;
 					bspush 16;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
-					goto L32;
-				L31:	sspush 27904;
-					invokestatic 60;		// javacard/framework/ISOException.throwIt(S)V
-				L32:	return;
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
+					goto L33;
+				L31:	aload_0;
+					invokespecial 58;		// FinalProject/FinalProject.resetPin()V
+					goto L33;
+				L32:	sspush 27904;
+					invokestatic 59;		// javacard/framework/ISOException.throwIt(S)V
+				L33:	return;
+		}
+
+		.method private resetPin()V {
+			.stack 1;
+			.locals 0;
+
+				L0:	getstatic_a 21;		// reference FinalProject/FinalProject.pin
+					invokevirtual 60;		// resetAndUnblock()V
+					return;
 		}
 
 		.method private verify(Ljavacard/framework/APDU;)V {
@@ -829,23 +755,23 @@
 
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
-				L0:	getstatic_a 23;		// reference FinalProject/FinalProject.pin
-					invokevirtual 43;		// getTriesRemaining()B
+				L0:	getstatic_a 21;		// reference FinalProject/FinalProject.pin
+					invokevirtual 41;		// getTriesRemaining()B
 					ifeq L5;
 				L1:	aload_1;
-					invokevirtual 46;		// getBuffer()[B
+					invokevirtual 44;		// getBuffer()[B
 					astore_2;
-				L2:	getstatic_a 23;		// reference FinalProject/FinalProject.pin
+				L2:	getstatic_a 21;		// reference FinalProject/FinalProject.pin
 					aload_2;
 					sconst_5;
 					bspush 16;
 					invokevirtual 61;		// check([BSB)Z
 					ifne L4;
 				L3:	sspush 25344;
-					invokestatic 60;		// javacard/framework/ISOException.throwIt(S)V
+					invokestatic 59;		// javacard/framework/ISOException.throwIt(S)V
 				L4:	goto L6;
 				L5:	sspush 25347;
-					invokestatic 60;		// javacard/framework/ISOException.throwIt(S)V
+					invokestatic 59;		// javacard/framework/ISOException.throwIt(S)V
 				L6:	return;
 		}
 
@@ -856,17 +782,17 @@
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
 				L0:	aload_1;
-					invokevirtual 46;		// getBuffer()[B
+					invokevirtual 44;		// getBuffer()[B
 					astore_2;
 				L1:	getfield_a_this 5;		// reference FinalProject/FinalProject.rsaPubKey
 					aload_2;
 					sconst_0;
-					invokeinterface 3 35 5;		// javacard/security/RSAPublicKey
+					invokeinterface 3 30 5;		// javacard/security/RSAPublicKey
 					sstore_3;
 				L2:	aload_1;
 					sconst_0;
 					sload_3;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
 					return;
 		}
 
@@ -877,17 +803,17 @@
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
 				L0:	aload_1;
-					invokevirtual 46;		// getBuffer()[B
+					invokevirtual 44;		// getBuffer()[B
 					astore_2;
 				L1:	getfield_a_this 5;		// reference FinalProject/FinalProject.rsaPubKey
 					aload_2;
 					sconst_0;
-					invokeinterface 3 35 4;		// javacard/security/RSAPublicKey
+					invokeinterface 3 30 4;		// javacard/security/RSAPublicKey
 					sstore_3;
 				L2:	aload_1;
 					sconst_0;
 					sload_3;
-					invokevirtual 50;		// setOutgoingAndSend(SS)V
+					invokevirtual 48;		// setOutgoingAndSend(SS)V
 					return;
 		}
 
@@ -898,7 +824,7 @@
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
 				L0:	aload_1;
-					invokevirtual 46;		// getBuffer()[B
+					invokevirtual 44;		// getBuffer()[B
 					astore_2;
 				L1:	getfield_a_this 3;		// reference FinalProject/FinalProject.rsaSig
 					getfield_a_this 4;		// reference FinalProject/FinalProject.rsaPrivKey
@@ -933,22 +859,22 @@
 			.descriptor	Ljavacard/framework/APDU;	0.10;
 
 				L0:	aload_1;
-					invokevirtual 46;		// getBuffer()[B
+					invokevirtual 44;		// getBuffer()[B
 					astore_3;
 				L1:	aload_1;
 					invokevirtual 67;		// getIncomingLength()S
 					sstore 4;
-				L2:	getstatic_a 38;		// reference FinalProject/FinalProject.avatar
+				L2:	getstatic_a 36;		// reference FinalProject/FinalProject.avatar
 					sconst_0;
-					sspush 5120;
+					sspush 25120;
 					sconst_0;
-					invokestatic 39;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					invokestatic 37;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
 					pop;
 					sload 4;
-					sspush 5120;
+					sspush 25120;
 					if_scmple L4;
 				L3:	sspush 26368;
-					invokestatic 60;		// javacard/framework/ISOException.throwIt(S)V
+					invokestatic 59;		// javacard/framework/ISOException.throwIt(S)V
 				L4:	aload_1;
 					invokevirtual 68;		// getOffsetCdata()S
 					sstore 5;
@@ -958,10 +884,10 @@
 					ifle L8;
 				L7:	aload_3;
 					sload 5;
-					getstatic_a 38;		// reference FinalProject/FinalProject.avatar
+					getstatic_a 36;		// reference FinalProject/FinalProject.avatar
 					sload 6;
 					sload_2;
-					invokestatic 49;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					invokestatic 47;		// javacard/framework/Util.arrayCopy([BS[BSS)S
 					pop;
 					sload 6;
 					sload_2;
@@ -977,17 +903,17 @@
 					aload_1;
 					invokevirtual 64;		// setOutgoing()S
 					pop;
-					getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
-					getstatic_a 31;		// reference FinalProject/FinalProject.aesKey
+					getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
+					getstatic_a 29;		// reference FinalProject/FinalProject.aesKey
 					sconst_2;
-					invokevirtual 51;		// init(Ljavacard/security/Key;B)V
-					getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
-					getstatic_a 38;		// reference FinalProject/FinalProject.avatar
+					invokevirtual 49;		// init(Ljavacard/security/Key;B)V
+					getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
+					getstatic_a 36;		// reference FinalProject/FinalProject.avatar
 					sconst_0;
-					sspush 5120;
-					getstatic_a 38;		// reference FinalProject/FinalProject.avatar
+					sspush 25120;
+					getstatic_a 36;		// reference FinalProject/FinalProject.avatar
 					sconst_0;
-					invokevirtual 52;		// doFinal([BSS[BS)S
+					invokevirtual 50;		// doFinal([BSS[BS)S
 					pop;
 					return;
 		}
@@ -1001,18 +927,18 @@
 				L0:	getstatic_s 70;		// short FinalProject/FinalProject.avatarLength
 					ifne L2;
 				L1:	sspush 27267;
-					invokestatic 60;		// javacard/framework/ISOException.throwIt(S)V
-				L2:	getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
-					getstatic_a 31;		// reference FinalProject/FinalProject.aesKey
+					invokestatic 59;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
+					getstatic_a 29;		// reference FinalProject/FinalProject.aesKey
 					sconst_1;
-					invokevirtual 51;		// init(Ljavacard/security/Key;B)V
-					getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
-					getstatic_a 38;		// reference FinalProject/FinalProject.avatar
+					invokevirtual 49;		// init(Ljavacard/security/Key;B)V
+					getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
+					getstatic_a 36;		// reference FinalProject/FinalProject.avatar
 					sconst_0;
-					sspush 5120;
-					getstatic_a 38;		// reference FinalProject/FinalProject.avatar
+					sspush 25120;
+					getstatic_a 36;		// reference FinalProject/FinalProject.avatar
 					sconst_0;
-					invokevirtual 52;		// doFinal([BSS[BS)S
+					invokevirtual 50;		// doFinal([BSS[BS)S
 					pop;
 					getstatic_s 70;		// short FinalProject/FinalProject.avatarLength
 					sstore_3;
@@ -1020,7 +946,7 @@
 					invokevirtual 64;		// setOutgoing()S
 					sstore 4;
 				L4:	aload_1;
-					sspush 5120;
+					sspush 25120;
 					invokevirtual 65;		// setOutgoingLength(S)V
 					sconst_0;
 					sstore 5;
@@ -1035,7 +961,7 @@
 				L9:	sload_3;
 				L10:	sstore 5;
 					aload_1;
-					getstatic_a 38;		// reference FinalProject/FinalProject.avatar
+					getstatic_a 36;		// reference FinalProject/FinalProject.avatar
 					sload 6;
 					sload 5;
 					invokevirtual 66;		// sendBytesLong([BSS)V
@@ -1048,17 +974,17 @@
 					sadd;
 					sstore 6;
 					goto L6;
-				L11:	getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
-					getstatic_a 31;		// reference FinalProject/FinalProject.aesKey
+				L11:	getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
+					getstatic_a 29;		// reference FinalProject/FinalProject.aesKey
 					sconst_2;
-					invokevirtual 51;		// init(Ljavacard/security/Key;B)V
-					getstatic_a 29;		// reference FinalProject/FinalProject.aesCipher
-					getstatic_a 38;		// reference FinalProject/FinalProject.avatar
+					invokevirtual 49;		// init(Ljavacard/security/Key;B)V
+					getstatic_a 27;		// reference FinalProject/FinalProject.aesCipher
+					getstatic_a 36;		// reference FinalProject/FinalProject.avatar
 					sconst_0;
-					sspush 5120;
-					getstatic_a 38;		// reference FinalProject/FinalProject.avatar
+					sspush 25120;
+					getstatic_a 36;		// reference FinalProject/FinalProject.avatar
 					sconst_0;
-					invokevirtual 52;		// doFinal([BSS[BS)S
+					invokevirtual 50;		// doFinal([BSS[BS)S
 					pop;
 					return;
 		}

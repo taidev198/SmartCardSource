@@ -96,7 +96,7 @@ public class FinalProject extends Applet implements ExtendedLength
 	//avatar
 		private static byte [] avatar;
 	private static short avatarLength;
-	private static final short MAX_AVATAR_SIZE = 5120;
+	private static final short MAX_AVATAR_SIZE = 25120;
 	
 	
 	public   FinalProject(byte[] bArray, short bOffset, byte bLength) 
@@ -269,13 +269,19 @@ public class FinalProject extends Applet implements ExtendedLength
         	pin.update(buffer, ISO7816.OFFSET_CDATA, (byte)16);
         	apdu.setOutgoingAndSend((short)0, (short)16);
         	break;
-              
+        case RESET_PIN:
+        	resetPin();
+        	break;
 		default:
 			ISOException.throwIt(ISO7816.SW_INS_NOT_SUPPORTED);
 		}
 	}
 
 
+	
+	private void resetPin(){
+		pin.resetAndUnblock();
+	}
 	
 	private void verify(APDU apdu) {
 		if( pin.getTriesRemaining() != 0 )	{
@@ -307,24 +313,7 @@ public class FinalProject extends Applet implements ExtendedLength
 		apdu.setOutgoingLength((short)(sigLen));
 		apdu.sendBytesLong(sig_buffer, (short)0, sigLen);
 	}
-	
-	//Doc key object va luu no vao trong bo dem tuong ung
-	private final short serializeKey(RSAPublicKey key, byte[] buffer, short offset) {
-		short expLen = key.getExponent(buffer, (short) (offset + 2));
-		Util.setShort(buffer, offset, expLen);
-		short modLen = key.getModulus(buffer, (short) (offset + 4 + expLen));
-		Util.setShort(buffer, (short)(offset + 2 + expLen), modLen);
-		return (short) (4 + expLen + modLen);
-	}
 
-	//Doc key tu bo dem va luu no vao trong key object
-	private final short deserializeKey(RSAPublicKey key, byte[] buffer, short offset) {
-		short expLen = Util.getShort(buffer, offset);
-		key.setExponent(buffer, (short) (offset + 2), expLen);
-		short modLen = Util.getShort(buffer, (short) (offset + 2 + expLen));
-		key.setModulus(buffer, (short) (offset + 4 + expLen), modLen);
-		return (short) (4 + expLen + modLen);
-	}
     
      private void loadImage(APDU apdu, short len){
 		 byte[] buffer = apdu.getBuffer();
