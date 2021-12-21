@@ -66,7 +66,6 @@ public class FinalProject extends Applet implements ExtendedLength
 	
 //decode
     private static final short NIBBLE_SIZE = 4;
-
     public static final short REASON_DATA_BUFFER_NOT_LARGE_ENOUGH = 0x0001;
     public static final short REASON_INVALID_ENCODING_SIZE = 0x0002;
     public static final short REASON_INVALID_ENCODING_CHARACTER = 0x0003;
@@ -126,15 +125,15 @@ public class FinalProject extends Applet implements ExtendedLength
          //fromUppercaseHex(bArray, (short)0, (short)16, pinTemp,(short)0);
         // convertToDec(pinTemp, (short)16);
           pin.update(pinTemp,(short)( 0), (byte)ret);
-          volatileMem = JCSystem.makeTransientByteArray((short) 0x10, JCSystem.CLEAR_ON_DESELECT);
+          volatileMem = JCSystem.makeTransientByteArray((short) 0x50, JCSystem.CLEAR_ON_DESELECT);
          nonVolatileMem = new byte[(short) 0x10];
          aesCipher = Cipher.getInstance(Cipher.ALG_AES_BLOCK_128_ECB_NOPAD, false);
          aesKey = (AESKey) KeyBuilder.buildKey(KeyBuilder.TYPE_AES, KeyBuilder.LENGTH_AES_128, false);
         aesKey.setKey(pinTemp, (short)0);
-        name = new  byte[30];
+        name = new  byte[50];
         id = new byte[30];
         date = new byte[30];
-        address = new byte[30];
+        address = new byte[50];
         gender = new byte[30];
         id_department = new byte[30];
         //avatar
@@ -190,13 +189,15 @@ public class FinalProject extends Applet implements ExtendedLength
 				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, id, (short) 0x00, (short) 0x10);
 				 	break;
 				case NAME:
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, name, (short) 0x00, (short) 0x10);
+					aesCipher.doFinal(buffer, ISO7816.OFFSET_CDATA, (short) 0x30, volatileMem, (short) 0x00);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, name, (short) 0x00, (short) 0x30);
 				 	break;
 				 	case DATE:
 				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, date, (short) 0x00, (short) 0x10);
 				 	break;
 				 	case ADDRESS:
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, address, (short) 0x00, (short) 0x10);
+				 	aesCipher.doFinal(buffer, ISO7816.OFFSET_CDATA, (short) 0x30, volatileMem, (short) 0x00);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, address, (short) 0x00, (short) 0x30);
 				 	break;
 				 	case GENDER:
 				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, gender, (short) 0x00, (short) 0x10);
@@ -219,9 +220,9 @@ public class FinalProject extends Applet implements ExtendedLength
 				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
 				 	break;
 				case NAME:
-				  aesCipher.doFinal(name, (short)0, (short) 0x10, volatileMem, (short) 0x00);
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
-				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
+				  aesCipher.doFinal(name, (short)0, (short) 0x30, volatileMem, (short) 0x00);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x30);
+				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x30);
 				 	break;
 				 	case DATE:
 				  aesCipher.doFinal(date, (short)0, (short) 0x10, volatileMem, (short) 0x00);
@@ -229,9 +230,9 @@ public class FinalProject extends Applet implements ExtendedLength
 				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
 				 	break;
 				 	case ADDRESS:
-				  aesCipher.doFinal(address, (short)0, (short) 0x10, volatileMem, (short) 0x00);
-				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
-				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
+				  aesCipher.doFinal(address, (short)0, (short) 0x30, volatileMem, (short) 0x00);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x30);
+				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x30);
 				 	break;
 				 	case GENDER:
 				  aesCipher.doFinal(gender, (short)0, (short) 0x10, volatileMem, (short) 0x00);
