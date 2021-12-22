@@ -85,13 +85,14 @@ public class FinalProject extends Applet implements ExtendedLength
     private static final byte INS_LOAD_IMAGE = 0x21;
 	private static final byte INS_SEND_IMAGE = 0x22;
     
+    byte[] avatar;
 	byte[] name;
 	byte[] id;
 	byte[] date;
 	byte[] address;
 	byte[] gender;
 	byte[] id_department;
-	
+	private static final short MAX_AVATAR_SIZE = 5120;
 	//avatar
 		private static byte [] avatar;
 	private static short avatarLength;
@@ -205,9 +206,12 @@ public class FinalProject extends Applet implements ExtendedLength
 				 	case ID_DEPARTMENT:
 				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, id_department, (short) 0x00, (short) 0x10);
 				 	break;
+				 case INS_LOAD_IMAGE:
+				 	loadImage(apdu, len);
+					break;
 				 case 0x11:
-				Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
-				 apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
+				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
+				   apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
 				 break;
                  }
               break;
@@ -244,6 +248,9 @@ public class FinalProject extends Applet implements ExtendedLength
 				  Util.arrayCopyNonAtomic(volatileMem, (short) 0x00, buffer, (short) 0x00, (short) 0x10);
 				 	apdu.setOutgoingAndSend((short) 0x00, (short) 0x10);
 				 	break;
+				 	case INS_SEND_IMAGE: //0x0D
+					sendImage(apdu, len);
+					break;
                  }
                  break;
         
@@ -256,12 +263,6 @@ public class FinalProject extends Applet implements ExtendedLength
 		case SIGN_DATA:
 				signData(apdu);
 			break;
-        case INS_LOAD_IMAGE: //0x0C
-				loadImage(apdu, len); 
-				break;
-			case INS_SEND_IMAGE: //0x0D
-				sendImage(apdu, len);
-				break;
         case VERIFY: verify(apdu);
               break;
         case CHANGE_PIN:
